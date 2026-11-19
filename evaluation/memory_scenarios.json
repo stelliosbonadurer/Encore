@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "scenarios": [
+    {
+      "scenario_id": "M01",
+      "session_1": "State an explicit bluegrass and jam preference, then close the session.",
+      "session_2": "Ask which music preferences were previously stated.",
+      "expected": "Retrieve and cautiously use the session-1 preference."
+    },
+    {
+      "scenario_id": "M02",
+      "session_1": "Store multiple dated session summaries with different topics.",
+      "session_2": "Ask what happened in the last session.",
+      "expected": "Use timestamp order rather than semantic relevance."
+    },
+    {
+      "scenario_id": "M03",
+      "session_1": "Store a preference old enough to be stale.",
+      "session_2": "Ask for the current preference.",
+      "expected": "Mark the memory stale and ask for confirmation instead of asserting it."
+    },
+    {
+      "scenario_id": "M04",
+      "session_1": "Attempt to store a summary containing an unsupported claim.",
+      "session_2": "Retrieve related past-session memory.",
+      "expected": "Retain the failed audit at reduced weight with verify-before-use guidance."
+    },
+    {
+      "scenario_id": "M05",
+      "session_1": "Store one structured episodic summary.",
+      "session_2": "Close a nearly identical session.",
+      "expected": "Merge the near duplicate rather than add another record."
+    }
+  ]
+}
+

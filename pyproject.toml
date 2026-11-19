@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "encore"
+version = "0.2.0"
+description = "A bounded music agent for ListenBrainz and MusicBrainz."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "requests>=2.31",
+    "python-dotenv>=1.0",
+    "jsonschema>=4.21",
+    # Pinned vector-store runtime; embedding artifact identity is checked separately.
+    "chromadb==1.5.9",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.2"]
+
+[project.scripts]
+encore = "encore.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+encore = ["prompts/*.md", "knowledge_base/*.md"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+# The course environment may install pytest-asyncio; Encore has no async tests.
+addopts = "-p no:asyncio"
